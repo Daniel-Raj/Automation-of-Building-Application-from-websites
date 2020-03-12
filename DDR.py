@@ -19,17 +19,17 @@ def distatus():
             websiteResponse = fetchFrom.urlopen(url)
             htmlCode = websiteResponse.read()
             s = include(htmlCode,'html.parser')
-                  
-            os.system('cmd /c "cordova create fder com.demo.ddr ' + appname + ' & cd fder & cordova platform add android"')
+            fder = appname + 'folder'      
+            os.system('cmd /c "cordova create '+ fder +' com.demo.ddr ' + appname + ' & cd '+ fder +' & cordova platform add android"')
             status1.set('#1 - project created!')
            
-            htmlFile = open('fder\www\index.html','w',encoding = 'utf-8')
+            htmlFile = open(fder+'\www\index.html','w',encoding = 'utf-8')
             htmlFile.write(str(s))
             htmlFile.close()
          
-            os.system('cmd /c "cd fder & cordova build android"')
+            os.system('cmd /c "cd '+ fder + ' & cordova build android"')
             status2.set('#2 - App created!')
-            os.system('cmd /c "cd fder/platforms/android/app/build/outputs/apk/debug & start ."')
+            os.system('cmd /c "cd '+ fder +'/platforms/android/app/build/outputs/apk/debug & start ."')
     except:
         status1.set('#1 - Error!')
         status2.set('#2 - Check the above fields or your internet connection')
